@@ -5,22 +5,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PaymentAndTopUpSteps {
 
-    Account account = new Account(); // Starting balance
+    Account account = new Account();
 
     @Given("I have entered my payment details")
     public void iHaveEnteredMyPaymentDetails() {
-        // Simulate entering payment details
     }
 
     @When("I enter my payment details and {string} to top up my account")
     public void iEnterMyPaymentDetailsAndToTopUpMyAccount(String amountStr) {
-        double amount = Double.parseDouble(amountStr.replace("€", ""));
+        double amount = Double.parseDouble(amountStr.replace("€", "")); //retrieve price
         account.topUp(amount);
     }
 
     @Then("my payment details should be validated")
     public void myPaymentDetailsShouldBeValidated() {
-        // Here you would implement validation logic
         assertTrue(account.getBalance() > 0);
     }
 

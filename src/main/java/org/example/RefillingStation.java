@@ -25,9 +25,8 @@ public class RefillingStation {
         return location;
     }
 
-    // Fixing the typo here by changing 'Status' to 'status'
     public StationStatus getStatus() {
-        return status; // Use 'status' instead of 'Status'
+        return status;
     }
 
     public Double getPrice() {
