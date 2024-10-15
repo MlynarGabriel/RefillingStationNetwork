@@ -9,11 +9,11 @@ public class RefillingStation {
         this.status = status;
     }
 
-    public static void setPrice(double price){
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public static void setStatus(StationStatus status){
+    public void setStatus(StationStatus status) {
         this.status = status;
     }
 
@@ -25,8 +25,9 @@ public class RefillingStation {
         return location;
     }
 
+    // Fixing the typo here by changing 'Status' to 'status'
     public StationStatus getStatus() {
-        return Status;
+        return status; // Use 'status' instead of 'Status'
     }
 
     public Double getPrice() {

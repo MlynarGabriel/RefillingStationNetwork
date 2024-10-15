@@ -4,33 +4,67 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CheckPricesForChargingSteps {
 
-    @Given("I am a registered customer or the owner")
-    public void IAmARegisteredCustomer(int number) {
-        assertEquals(getCustomerId(),number);
+    private RefillingStation station; // Declare your station here
+
+    @Given("I am the owner")
+    public void iAmTheOwner() {
+        // Any additional setup for the owner can be added here if necessary
     }
 
-    @When("I view the prices for a location")
-    public void ViewPricesForALocation(String location) {
-        station.getPrice();
+    @Given("the current price for kWh AC is {double} EUR at a location")
+    public void theCurrentPriceForKWhAC(Double price) {
+        // Initialize the station with a status and set the price
+        station = new RefillingStation(StationStatus.IN_OPERATION);
+        station.setPrice(price); // Set initial price for kWh AC
     }
 
-    @Then("I should see the price for all available power types")
-    public void displayPricesForAllPowerTypes() {
-        // Logik zur Anzeige der Preise für alle verfügbaren Stromtypen
-        System.out.println("Zeige Preise für alle Stromtypen...");
+    @When("I update the price of kWh AC to {double} EUR at a location")
+    public void iUpdateThePriceOfKWhAC(Double newPrice) {
+        // Check if station is initialized
+        if (station == null) {
+            station = new RefillingStation(StationStatus.IN_OPERATION); // Initialize if null
+        }
+        station.setPrice(newPrice); // Update the price
     }
 
-    @When("I view the prices for multiple locations")
-    public void iViewPricesForMultipleLocations() {
-        // Logik zur Anzeige der Preise für mehrere Standorte
-        System.out.println("Zeige Preise für mehrere Standorte an...");
+    @Then("the price for kWh AC at a location should be {double} EUR")
+    public void thePriceForKWhACAtALocationShouldBeEUR(Double expectedPrice) {
+        assertEquals(expectedPrice, station.getPrice()); // Check the updated price
     }
 
-    @Then("I should see the price differences between the two locations for kWh AC, kWh DC, and per-minute charging rates")
-    public void displayPriceDifferencesBetweenLocations() {
-        // Logik zur Anzeige der Preisunterschiede zwischen Standorten
-        System.out.println("Zeige Preisunterschiede zwischen den Standorten an...");
+    // For multiple prices changes, we need additional steps
+
+    @Given("the current price for kWh DC is {double} EUR at a location")
+    public void theCurrentPriceForKWhDC(Double price) {
+        // Initialize the station with a status and set the price
+        station = new RefillingStation(StationStatus.IN_OPERATION);
+        station.setPrice(price); // Set initial price for kWh DC
+    }
+
+    @When("I change the price of kWh DC to {double} EUR in the afternoon")
+    public void iChangeThePriceOfKWhDCInTheAfternoon(Double newPrice) {
+        // Ensure station is initialized
+        if (station == null) {
+            station = new RefillingStation(StationStatus.IN_OPERATION); // Initialize if null
+        }
+        station.setPrice(newPrice); // Update the price in the afternoon
+    }
+
+    @When("I change it again to {double} EUR in the evening")
+    public void iChangeItAgainToEURInTheEvening(Double newPrice) {
+        // Ensure station is initialized
+        if (station == null) {
+            station = new RefillingStation(StationStatus.IN_OPERATION); // Initialize if null
+        }
+        station.setPrice(newPrice); // Update the price in the evening
+    }
+
+    @Then("the price of kWh DC should be {double} EUR by the end of the day")
+    public void thePriceOfKWhDCShouldBeEURByTheEndOfTheDay(Double expectedPrice) {
+        assertEquals(expectedPrice, station.getPrice()); // Check the final price
     }
 }

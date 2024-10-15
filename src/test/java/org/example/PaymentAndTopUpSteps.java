@@ -1,44 +1,32 @@
 package org.example;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PaymentAndTopUpSteps {
 
+    Account account = new Account(); // Starting balance
+
     @Given("I have entered my payment details")
     public void iHaveEnteredMyPaymentDetails() {
-        // Logik zur Eingabe der Zahlungsinformationen
-        System.out.println("Zahlungsdetails eingegeben...");
+        // Simulate entering payment details
     }
 
-    @When("I confirm the top-up order")
-    public void iConfirmTheTopUpOrder() {
-        // Logik zur Bestätigung der Aufladung
-        System.out.println("Bestätige Aufladung...");
+    @When("I enter my payment details and {string} to top up my account")
+    public void iEnterMyPaymentDetailsAndToTopUpMyAccount(String amountStr) {
+        double amount = Double.parseDouble(amountStr.replace("€", ""));
+        account.topUp(amount);
     }
 
-    @Then("the system should display a confirmation message with the top-up amount")
-    public void systemDisplaysTopUpConfirmation() {
-        // Logik zur Anzeige der Bestätigungsnachricht
-        System.out.println("Zeige Bestätigungsnachricht der Aufladung...");
+    @Then("my payment details should be validated")
+    public void myPaymentDetailsShouldBeValidated() {
+        // Here you would implement validation logic
+        assertTrue(account.getBalance() > 0);
     }
 
-    @Given("I have successfully topped up my account")
-    public void iHaveSuccessfullyToppedUpMyAccount() {
-        // Logik zur Bestätigung einer erfolgreichen Aufladung
-        System.out.println("Aufladung erfolgreich...");
-    }
-
-    @When("the payment is processed")
-    public void paymentIsProcessed() {
-        // Logik zur Zahlungsabwicklung
-        System.out.println("Zahlung wird bearbeitet...");
-    }
-
-    @Then("I should receive a notification confirming the payment and the new account balance")
-    public void receivePaymentNotification() {
-        // Logik zum Erhalt der Zahlungsbenachrichtigung
-        System.out.println("Benachrichtigung zur Zahlung und neuem Kontostand erhalten...");
+    @Then("my account should be credited with the {string}")
+    public void myAccountShouldBeCreditedWithThe(String amountStr) {
+        double expectedAmount = Double.parseDouble(amountStr.replace("€", ""));
+        assertEquals(expectedAmount + 100.0, account.getBalance()); // Initial balance was 100.0
     }
 }

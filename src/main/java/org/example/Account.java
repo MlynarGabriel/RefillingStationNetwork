@@ -1,17 +1,27 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
-    double balance;
+    private double balance;
+    private List<Double> topUpHistory;
 
-    public Account(double balance) {
-        this.balance = balance;
+    public Account() {
+        this.balance = 0.0;
+        this.topUpHistory = new ArrayList<>();
     }
 
-
-    public static void topUP(){
-
+    public void topUp(double amount) {
+        this.balance += amount;
+        topUpHistory.add(amount);
     }
-    public static void checkBalance(){
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public List<Double> getTopUpHistory() {
+        return topUpHistory;
     }
 }

@@ -1,40 +1,35 @@
 package org.example;
-import java.util.*;
+
+import java.util.Date;
 
 public class ChargeSession {
     Date start;
     Date end;
+    StationPowerType powerType;
+    double energyCharged; // in kWh
+    double totalPrice;
 
-    public static void getDuration(){
-
-    }
-
-    public static void getPowerType(){
-
-    }
-
-    public static void calcTotalPrice(){
-
-    }
-
-    public ChargeSession(Date start, Date end) {
+    public ChargeSession(Date start, Date end, StationPowerType powerType, double energyCharged, double totalPrice) {
         this.start = start;
         this.end = end;
+        this.powerType = powerType;
+        this.energyCharged = energyCharged;
+        this.totalPrice = totalPrice;
     }
 
-    public Date getStart() {
-        return start;
+    public long getDuration() {
+        return (end.getTime() - start.getTime()) / 60000; // duration in minutes
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+    public StationPowerType getPowerType() {
+        return powerType;
     }
 
-    public Date getEnd() {
-        return end;
+    public double getEnergyCharged() {
+        return energyCharged;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 }

@@ -1,22 +1,27 @@
 package org.example;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class FillingNetwork {
-    String station;
+    Map<String, ChargingPoint> stations;
 
-    public FillingNetwork(String station) {
-        this.station = station;
-
+    public FillingNetwork() {
+        this.stations = new HashMap<>();
     }
 
-    public String getStation() {
-        return station;
+    public void addStation(String location, ChargingPoint station) {
+        stations.put(location, station);
     }
 
-    public static void addStation(){
-
+    public ChargingPoint getStation(String location) {
+        return stations.get(location);
     }
 
-    public static void displayStationStatus(){
-
+    public void setStationPrices(String location, double priceAC, double priceDC) {
+        ChargingPoint station = stations.get(location);
+        if (station != null) {
+            station.setPrices(priceAC, priceDC);
+        }
     }
 }
