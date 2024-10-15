@@ -2,9 +2,9 @@ Feature: Enter payment details and confirm order
 
   Scenario: Enter payment details for account top-up
     Given I am a registered customer
-    When I enter my payment details and amount to top up my account
+    When I enter my payment details and "50.00€" to top up my account
     Then my payment details should be validated
-    And my account should be credited with the entered amount
+    And my account should be credited with the "50.00€"
 
   Scenario: Confirm top-up order
     Given I have entered my payment details

@@ -1,18 +1,17 @@
 package org.example;
 
 public class Owner extends Person{
-    Person ownewr_id;
+    Person ownerId;
 
     public Owner(int id, String name) {
         super(id, name);
     }
 
-    public static void setPrice (){
-
+    public Person getOwnerId() {
+        return ownerId;
     }
 
-    public static void setOperatingStatus (){
-
+    public void setOwnerId(Person ownerId) {
+        this.ownerId = ownerId;
     }
-
 }

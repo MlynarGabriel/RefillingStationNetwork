@@ -7,15 +7,13 @@ import io.cucumber.java.en.When;
 public class CheckPricesForChargingSteps {
 
     @Given("I am a registered customer or the owner")
-    public void iAmRegisteredCustomerOrOwner() {
-        // Logik zur Überprüfung, ob der Benutzer ein registrierter Kunde oder Besitzer ist
-        System.out.println("Überprüfe registrierten Kunden oder Besitzer...");
+    public void IAmARegisteredCustomer(int number) {
+        assertEquals(getCustomerId(),number);
     }
 
     @When("I view the prices for a location")
-    public void iViewPricesForALocation() {
-        // Logik zur Anzeige der Preise für einen bestimmten Standort
-        System.out.println("Zeige Preise für einen bestimmten Standort an...");
+    public void ViewPricesForALocation(String location) {
+        station.getPrice();
     }
 
     @Then("I should see the price for all available power types")

@@ -1,7 +1,12 @@
 package org.example;
 
 public class Account {
-    int balance;
+    double balance;
+
+    public Account(double balance) {
+        this.balance = balance;
+    }
+
 
     public static void topUP(){
 

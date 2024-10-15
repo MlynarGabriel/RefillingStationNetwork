@@ -2,17 +2,21 @@ package org.example;
 
 public class FillingNetwork {
     String station;
-    String customer;
+
+    public FillingNetwork(String station) {
+        this.station = station;
+
+    }
+
+    public String getStation() {
+        return station;
+    }
 
     public static void addStation(){
 
     }
 
     public static void displayStationStatus(){
-
-    }
-
-    public static void registerCustomer(){
 
     }
 }
