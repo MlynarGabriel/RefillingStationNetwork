@@ -1,5 +1,6 @@
 package org.example;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -36,5 +37,20 @@ public class CheckInvoiceDetailsSteps {
         account.topUp(amount);
         expectedBalance += amount;
         expectedTopUps.add(amount);
+    }
+
+    @Given("I am a registered customer")
+    public void iAmARegisteredCustomer() {
+        
+    }
+
+    @When("I check my latest invoice")
+    public void iCheckMyLatestInvoice() {
+        
+    }
+
+    @Then("I should see the details of my most recent charging session including the location, charging point, duration, energy loaded, and total cost")
+    public void iShouldSeeTheDetailsOfMyMostRecentChargingSessionIncludingTheLocationChargingPointDurationEnergyLoadedAndTotalCost() {
+
     }
 }
