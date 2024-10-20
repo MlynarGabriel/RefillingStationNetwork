@@ -1,35 +1,37 @@
 package org.example;
 
+import java.util.List;
+
 public class RefillingStation {
-    String location;
-    StationStatus status;
-    Double price;
+    private String location;
 
-    public RefillingStation(StationStatus status) {
-        this.status = status;
+    private List<ChargingPoint> chargingPoints;
+    private double priceAC= 0.34;//price per kWH
+    private double priceDC = 0.44;
+
+    public String displayAC_or_DC_Price() {
+        return "AC Price: " + priceAC + " EUR/kWh, DC Price: " + priceDC + " EUR/kWh";
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public double getPriceAC() {
+        return priceAC;
     }
 
-    public void setStatus(StationStatus status) {
-        this.status = status;
+    public double getPriceDC() {
+        return priceDC;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setPrices(double priceAC, double priceDC) {//für beide ACDC Preise
+        this.priceAC = priceAC;
+        this.priceDC = priceDC;
     }
 
-    public String getLocation() {
-        return location;
+    public void addChargingPoint(ChargingPoint point) {
+        chargingPoints.add(point);
     }
 
-    public StationStatus getStatus() {
-        return status;
+    public List<ChargingPoint> getChargingPoints() {
+        return chargingPoints;
     }
 
-    public Double getPrice() {
-        return price;
-    }
 }

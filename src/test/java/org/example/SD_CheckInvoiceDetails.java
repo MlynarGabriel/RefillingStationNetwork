@@ -5,8 +5,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SD_CheckInvoiceDetails {
+    private Account account;
+
     @Given("I am a registered customer")
     public void iAmARegisteredCustomer() {
+        account = new Account();
+        account.setBalance(0.0);
     }
 
     @When("I check my invoices")

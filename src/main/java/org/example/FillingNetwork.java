@@ -1,27 +1,30 @@
 package org.example;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FillingNetwork {
-    Map<String, ChargingPoint> stations;
+    private List<RefillingStation> stations;
+    private List<Account> accounts;
 
-    public FillingNetwork() {
-        this.stations = new HashMap<>();
+    public void addStation(RefillingStation station) {
+        stations.add(station);
     }
 
-    public void addStation(String location, ChargingPoint station) {
-        stations.put(location, station);
-    }
-
-    public ChargingPoint getStation(String location) {
-        return stations.get(location);
-    }
-
-    public void setStationPrices(String location, double priceAC, double priceDC) {
-        ChargingPoint station = stations.get(location);
-        if (station != null) {
-            station.setPrices(priceAC, priceDC);
+    public void displayStationStatus(){
+        for(RefillingStation s : this.stations){
+            //bearbeiten
         }
     }
+
+    public void registerCustomer(Customer customer){
+        //bearbeiten
+    }
+
+
+
+
+
+
 }
