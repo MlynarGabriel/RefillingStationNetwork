@@ -13,6 +13,7 @@ public class SD_SetOperatingStatus {
     public void aChargingPointIsCurrently( String status) {
 
         chargingPoint.setStatus(StationStatus.valueOf(status));
+
     }
 
     @When("I set the status of the station to {string}")

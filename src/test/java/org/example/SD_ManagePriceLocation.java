@@ -11,7 +11,12 @@ public class SD_ManagePriceLocation {
     }
 
     @When("I add a new location {string} with prices for {string} kWh AC ,{string} kWh DC")
-    public void iAddANewLocationWithPricesForKWhACKWhDC(String arg0, String arg1, String arg2) {
+    public void iAddANewLocationWithPricesForKWhACKWhDC(String location, String priceAC, String priceDC) {
+        RefillingStation newStation = new RefillingStation();
+        newStation.setLocation(location);
+        newStation.setPrices(Double.parseDouble(priceAC), Double.parseDouble(priceDC));
+        FillingNetwork network = new FillingNetwork();
+        network.addStation(newStation);  // Station wird zum Netzwerk hinzugefügt
     }
 
     @Then("the prices should be set for the new location {string} {string} kWh AC ,{string} kWh DC")

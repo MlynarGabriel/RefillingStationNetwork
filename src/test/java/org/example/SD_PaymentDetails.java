@@ -13,8 +13,11 @@ public class SD_PaymentDetails {
     private Account account;
 
     @When("I enter my payment details and {string} to top up my account")
-    public void iEnterMyPaymentDetailsAndToTopUpMyAccount(String arg0) {
-        topUp = Double.parseDouble(amount.replace("€", ""));
+    public void iEnterMyPaymentDetailsAndToTopUpMyAccount(String amount) {
+        this.amount = amount;
+        double topUpAmount = Double.parseDouble(amount.replace("€", ""));
+        account = new Account();
+        account.topUp(topUpAmount);
     }
 
     @Then("my payment details should be validated")
@@ -24,9 +27,8 @@ public class SD_PaymentDetails {
     }
 
     @And("my account should be credited with the {string}")
-    public void myAccountShouldBeCreditedWithThe(String arg0) {
+    public void myAccountShouldBeCreditedWithThe(String amount) {
         double expectedAmount = Double.parseDouble(amount.replace("€", ""));
-        account.topUp(expectedAmount);
         assertEquals(expectedAmount, account.getBalance());
     }
 
