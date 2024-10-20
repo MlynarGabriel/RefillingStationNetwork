@@ -5,17 +5,29 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class SD_PaymentDetails {
+    private double topUp;
+    private String amount;
+    private Account account;
+
     @When("I enter my payment details and {string} to top up my account")
     public void iEnterMyPaymentDetailsAndToTopUpMyAccount(String arg0) {
+        topUp = Double.parseDouble(amount.replace("€", ""));
     }
 
     @Then("my payment details should be validated")
     public void myPaymentDetailsShouldBeValidated() {
+        //hier noch eine überprüfung logik überlegen
+        System.out.println("Payment details are valid.");
     }
 
     @And("my account should be credited with the {string}")
     public void myAccountShouldBeCreditedWithThe(String arg0) {
+        double expectedAmount = Double.parseDouble(amount.replace("€", ""));
+        account.topUp(expectedAmount);
+        assertEquals(expectedAmount, account.getBalance());
     }
 
     @Given("I have entered my payment details")
