@@ -9,9 +9,7 @@ public class RefillingStation {
     private double priceAC= 0.34;//price per kWH
     private double priceDC = 0.44;
 
-    public String displayAC_or_DC_Price() {
-        return "AC Price: " + priceAC + " EUR/kWh, DC Price: " + priceDC + " EUR/kWh";
-    }
+
 
     public double getPriceAC() {
         return priceAC;
@@ -25,6 +23,14 @@ public class RefillingStation {
         this.priceAC = priceAC;
         this.priceDC = priceDC;
     }
+
+
+
+    public String displayAC_or_DC_Price() {
+        return "AC Price: " + priceAC + " EUR/kWh, DC Price: " + priceDC + " EUR/kWh";
+    }
+
+
 
     public void addChargingPoint(ChargingPoint point) {
         chargingPoints.add(point);
