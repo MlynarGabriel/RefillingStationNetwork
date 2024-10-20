@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.Date;
 
 public class ChargeSession {
+
     private Date start;
     private Date end;
     private double energyCharged;
@@ -76,6 +77,23 @@ public class ChargeSession {
     }
 
     public double calcTotalPrice() {
-        // bearbeiten;Überlegen wir wir den Preis berechnen hier
+        RefillingStation station = chargingPoint.getRefillingStation();
+
+        // Preis pro kWh abhängig vom Power-Typ (AC oder DC)
+        double pricePerKWh;
+
+        // Überprüfen, welcher Power-Typ verwendet wird (AC oder DC)
+        if (getPowerType() == StationPowerType.AC) {
+            pricePerKWh = station.getPriceAC(); // Preis pro kWh für AC von der RefillingStation
+        } else if (getPowerType() == StationPowerType.DC) {
+            pricePerKWh = station.getPriceDC(); // Preis pro kWh für DC von der RefillingStation
+        } else {
+            throw new IllegalArgumentException("Unknown power type.");
+        }
+
+        // Berechnung des Gesamtpreises: Energieverbrauch (kWh) * Preis pro kWh
+        totalPrice = getEnergyCharged() * pricePerKWh;
+
+        return totalPrice;
     }
 }
