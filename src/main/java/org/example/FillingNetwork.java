@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,12 +8,25 @@ import java.util.Map;
 public class FillingNetwork {
     private List<RefillingStation> stations;
     private List<Account> customer_accounts;
-    private List<Admin_Account> admin_accounts
+    private List<Admin_Account> admin_accounts;
+    private  List<ChargeSession> chargeSessions;
 
-    public void addStation(RefillingStation station) {
-        stations.add(station);
+
+
+    public List<ChargeSession> getChargeSessions() {
+        return chargeSessions;
     }
 
+    public void setChargeSessions(List<ChargeSession> chargeSessions) {
+        this.chargeSessions = chargeSessions;
+    }
+
+    public FillingNetwork() {
+        stations = new ArrayList<>();
+        customer_accounts = new ArrayList<>();
+        admin_accounts = new ArrayList<>();
+        chargeSessions = new ArrayList<>();
+    }
 
 
     public List<Account> getCustomer_accounts() {
@@ -54,20 +68,29 @@ public class FillingNetwork {
 
 
     //______________trennstrich--------------- getter setter oben, Methode unten
+    public void addStation(RefillingStation station) {
+        System.out.println("Adding station at location: " + station.getLocation());
+        stations.add(station);
+    }
+
 
 
     public void displayStationStatus(){
         for(RefillingStation s : this.stations){
-            //bearbeiten
+            System.out.println("Station Location: " + s.getLocation());
+            System.out.println("AC Price: " + s.getPriceAC() + " EUR/kWh, DC Price: " + s.getPriceDC() + " EUR/kWh");
+            // Add more status information as needed
         }
     }
     // Methode, um eine Station anhand des Standorts zu finden
     public RefillingStation findStationByLocation(String location) {
         for (RefillingStation station : stations) {
-            if (station.getLocation().equalsIgnoreCase(location)) {
-                return station; // Rückgabe der Station, wenn der Standort übereinstimmt
+            if (station.getLocation().equals(location)) {
+                System.out.println("Found station at location: " + location);
+                return station;
             }
         }
-        return null; // Rückgabe von null, wenn keine Station mit dem Standort gefunden wurde
+        System.out.println("No station found at location: " + location);
+        return null;
     }
 }

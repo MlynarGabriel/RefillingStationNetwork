@@ -5,6 +5,9 @@ public class Customer {
     private int customerID;
     private String customerName;
 
+    public Customer(String number) {
+    }
+
     public int getCustomerID() {
         return customerID;
     }

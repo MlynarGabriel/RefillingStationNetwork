@@ -5,30 +5,20 @@ import java.util.Date;
 
 public class ChargeSession {
 
-    private Date start;
-    private Date end;
+    private long duration;  // in minutes
     private double energyCharged;
     private double totalPrice;
     private Account account;
     private ChargingPoint chargingPoint;
 
-
-
-    public Date getStart() {
-        return start;
+    public ChargeSession() {
+        this.duration = 60;  // Example duration
+        this.energyCharged = 20.0;  // Example energy in kWh
+        this.totalPrice = 0.0;
+        this.account = new Account();
+        this.chargingPoint = new ChargingPoint();
     }
 
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
-    public Date getEnd() {
-        return end;
-    }
-
-    public void setEnd(Date end) {
-        this.end = end;
-    }
 
     public void setEnergyCharged(double energyCharged) {
         this.energyCharged = energyCharged;
@@ -58,14 +48,16 @@ public class ChargeSession {
         this.chargingPoint = chargingPoint;
     }
 
+    public long getDuration() {
+        return duration;
+    }
+
 
     //--------------------Trennstrich--------------------------------- Open alles generierte Getter und Setter, Construktor; Unten sind die Methoden
 
 
 
-    public long getDuration() {
-        return (end.getTime() - start.getTime()) / (1000 * 60); // Dauer in Minuten
-    }
+
 
     // Methode, um den Energie-Typ zu bekommen
     public StationPowerType getPowerType() {

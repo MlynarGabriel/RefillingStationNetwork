@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RefillingStation {
@@ -9,6 +10,21 @@ public class RefillingStation {
     private double priceAC= 0.34;//price per kWH
     private double priceDC = 0.44;
 
+    public RefillingStation(String location, List<ChargingPoint> chargingPoints) {
+        this.location = location;
+        this.chargingPoints = chargingPoints;
+    }
+
+    public RefillingStation() {
+        this.chargingPoints = new ArrayList<>();
+    }
+
+    public RefillingStation(String location) {
+    this.location = location;
+    this.chargingPoints = new ArrayList<>();
+}
+
+
     public String getLocation() {
         return location;
     }
@@ -16,6 +32,7 @@ public class RefillingStation {
     public void setLocation(String location) {
         this.location = location;
     }
+
 
 
     public void setChargingPoints(List<ChargingPoint> chargingPoints) {
@@ -61,5 +78,6 @@ public class RefillingStation {
     public List<ChargingPoint> getChargingPoints() {
         return chargingPoints;
     }
+
 
 }
