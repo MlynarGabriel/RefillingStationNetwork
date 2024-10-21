@@ -6,7 +6,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SD_ManagePriceLocation {
-
+    @Given("I am the owner")
+    public void iAmTheOwner() {
+    }
 
     @When("I add a new location {string} with prices for {string} kWh AC ,{string} kWh DC")
     public void iAddANewLocationWithPricesForKWhACKWhDC(String location, String priceAC, String priceDC) {
