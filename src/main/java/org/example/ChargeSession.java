@@ -12,8 +12,8 @@ public class ChargeSession {
     private ChargingPoint chargingPoint;
 
     public ChargeSession() {
-        this.duration = 60;  // Example duration
-        this.energyCharged = 20.0;  // Example energy in kWh
+        this.duration = 0;  // Example duration
+        this.energyCharged = 0.0;
         this.totalPrice = 0.0;
         this.account = new Account();
         this.chargingPoint = new ChargingPoint();

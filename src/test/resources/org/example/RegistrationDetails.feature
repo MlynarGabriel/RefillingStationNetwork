@@ -10,3 +10,4 @@ Feature: Enter registration details and receive customer ID
     Given I have not entered all required fields
     When I attempt to register
     Then the system should display an error message asking for the missing details
+
