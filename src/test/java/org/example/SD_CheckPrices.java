@@ -1,10 +1,8 @@
 package org.example;
 
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-
+import io.cucumber.java.en.When
 
 public class SD_CheckPrices {
 
@@ -14,6 +12,8 @@ public class SD_CheckPrices {
 
     @Given("I am a registered customer or the owner")
     public void iAmARegisteredCustomerOrTheOwner() {
+
+
 
     }
 
@@ -51,6 +51,4 @@ public class SD_CheckPrices {
         System.out.println("Location 1: " + station1.displayAC_or_DC_Price());
         System.out.println("Location 2: " + station2.displayAC_or_DC_Price());
     }
-
-
 }

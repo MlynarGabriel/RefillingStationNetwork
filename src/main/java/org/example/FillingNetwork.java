@@ -1,21 +1,13 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class FillingNetwork {
     private List<RefillingStation> stations;
     private List<Account> customer_accounts;
-    private List<Admin_Account> admin_accounts;
-
-    public FillingNetwork() {
-        this.stations = new ArrayList<>(); // Initialisiert die Liste mit einer neuen ArrayList
-        this.customer_accounts = new ArrayList<>(); // Optional: initialisiert auch die Kundenkonten-Liste
-        this.admin_accounts = new ArrayList<>(); // Optional: initialisiert auch die Admin-Konten-Liste
-    }
+    private List<Admin_Account> admin_accounts
 
     public void addStation(RefillingStation station) {
         stations.add(station);
