@@ -3,9 +3,12 @@ package org.example;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
 
 public class SD_SetOperatingStatus {
     private ChargingPoint chargingPoint;
+    private Account account= new Account();
+    String errorMessage = "";
 
     @And("a charging point is currently {string}")
     public void aChargingPointIsCurrently(String status) {
@@ -36,5 +39,22 @@ public class SD_SetOperatingStatus {
     @When("a customer stops charging")
     public void aCustomerStopsCharging() {
         chargingPoint.stopCharging();
+    }
+
+    @When("I try to charge with a balance of zero or below")
+    public void iChargeWithABalanceOfZeroOrBelow() {
+
+        try {
+            if (account.getBalance() <= 0) {
+                throw new IllegalArgumentException("no balance");
+            }
+        } catch (IllegalArgumentException e) {
+            errorMessage = e.getMessage();
+        }
+    }
+
+    @Then("I should see a error message {string}")
+    public void iShouldSeeAErrorMessage(String expectedErrorMessage) {
+        Assertions.assertEquals(expectedErrorMessage, errorMessage);
     }
 }
