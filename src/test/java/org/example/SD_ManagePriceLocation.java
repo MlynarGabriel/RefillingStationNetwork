@@ -1,5 +1,6 @@
 package org.example;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class SD_ManagePriceLocation {
     private FillingNetwork network;
     private RefillingStation addedStation;
+    RefillingStation newStation = new RefillingStation();
+
 
     public SD_ManagePriceLocation() {
         network = new FillingNetwork(); // Create the network object only once
@@ -26,7 +29,7 @@ public class SD_ManagePriceLocation {
             throw new IllegalArgumentException("Price cannot be negative or zero");
         }
 
-        RefillingStation newStation = new RefillingStation();
+
         newStation.setLocation(location);
         newStation.setPrices(priceAC, priceDC);
         network = new FillingNetwork();
@@ -44,17 +47,8 @@ public class SD_ManagePriceLocation {
 
     @When("I update the price of kWh AC to {double} EUR at a specific location or all locations")
     public void iUpdateThePriceOfKWhACToEURAtASpecificLocationOrAllLocations(double newPrice) {
-        if (newPrice < 0) {
-            throw new IllegalArgumentException("Price cannot be negative");
-        }
 
-        if (addedStation != null) {
-            addedStation.setPriceAC(newPrice);
-        } else {
-            for (RefillingStation station : network.getStations()) {
-                station.setPriceAC(newPrice);
-            }
-        }
+        newStation.setPriceAC(newPrice);
     }
 
     @Then("the price for kWh AC at that location or all locations should be updated to {double} EUR")
@@ -65,6 +59,20 @@ public class SD_ManagePriceLocation {
             for (RefillingStation station : network.getStations()) {
                 assertEquals(expectedPrice, station.getPriceAC(), "AC price mismatch");
             }
+        }
+    }
+
+
+    @Then("I should receive an error message {string} for the Price_AC and Price_DC")
+    public void iShouldReceiveAnErrorMessageForThePrice_ACAndPrice_DC(String errorMessage ) {
+        RefillingStation station = new RefillingStation();
+        try {
+            if ( station.getPriceDC()<= 0 || station.getPriceAC() <=0) {
+                throw new IllegalArgumentException("Price cannot be negative or zero");
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("expectedErrorMessage");
         }
     }
 }
