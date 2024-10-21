@@ -14,3 +14,6 @@ Feature: Set a charging station to a specific status
     Given a charging point is currently "OCCUPIED"
     When a customer stops charging
     Then the charging point should automatically be marked as "IN_OPERATION_FREE"
+
+
+

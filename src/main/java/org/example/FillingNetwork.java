@@ -46,9 +46,7 @@ public class FillingNetwork {
     }
 
 
-    public void registerCustomer(Customer customer){
-        //bearbeiten
-    }
+
 
     public List<RefillingStation> getStations() {
         return stations;
@@ -82,7 +80,7 @@ public class FillingNetwork {
             // Add more status information as needed
         }
     }
-    // Methode, um eine Station anhand des Standorts zu finden
+
     public RefillingStation findStationByLocation(String location) {
         for (RefillingStation station : stations) {
             if (station.getLocation().equals(location)) {
@@ -92,5 +90,20 @@ public class FillingNetwork {
         }
         System.out.println("No station found at location: " + location);
         return null;
+    }
+
+    public void registerCustomer(Customer customer) {
+        // Überprüfen, ob der Kunde bereits existiert
+        for (Account account : customer_accounts) {
+            if (account.getCustomer().getEmail().equals(customer.getEmail())) {
+                System.out.println("Customer already registered with email: " + customer.getEmail());
+                return;
+            }
+        }
+
+        // Falls der Kunde neu ist, füge ihn hinzu
+        Account newAccount = new Account();
+        customer_accounts.add(newAccount);
+        System.out.println("Customer registered successfully with email: " + customer.getEmail());
     }
 }

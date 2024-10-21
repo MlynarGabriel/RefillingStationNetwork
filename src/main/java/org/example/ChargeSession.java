@@ -1,8 +1,5 @@
 package org.example;
 
-import java.time.Duration;
-import java.util.Date;
-
 public class ChargeSession {
 
     private long duration;  // in minutes
@@ -60,7 +57,7 @@ public class ChargeSession {
 
 
     // Methode, um den Energie-Typ zu bekommen
-    public StationPowerType getPowerType() {
+    public PowerType getPowerType() {
         return chargingPoint.getPowerType(); //wir nehmen den Powertyp von der ChargingPoint Klasse
     }
 
@@ -75,9 +72,9 @@ public class ChargeSession {
         double pricePerKWh;
 
         // Überprüfen, welcher Power-Typ verwendet wird (AC oder DC)
-        if (getPowerType() == StationPowerType.AC) {
+        if (getPowerType() == PowerType.AC) {
             pricePerKWh = station.getPriceAC(); // Preis pro kWh für AC von der RefillingStation
-        } else if (getPowerType() == StationPowerType.DC) {
+        } else if (getPowerType() == PowerType.DC) {
             pricePerKWh = station.getPriceDC(); // Preis pro kWh für DC von der RefillingStation
         } else {
             throw new IllegalArgumentException("Unknown power type.");

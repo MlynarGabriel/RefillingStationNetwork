@@ -3,14 +3,14 @@ package org.example;
 public class ChargingPoint {
     private RefillingStation refillingStation = new RefillingStation();
     private PointStatus status = PointStatus.IN_OPERATION_FREE; //default setting to in operation free
-    private StationPowerType powerType =  StationPowerType.AC; //default setting to AC
+    private PowerType powerType =  PowerType.AC; //default setting to AC
     private boolean isAvailable;
 
     // No-arg constructor
     public ChargingPoint() {
         this.refillingStation = new RefillingStation(); // Initialize refillingStation
         this.status = PointStatus.IN_OPERATION_FREE; //default setting to in operation free
-        this.powerType = StationPowerType.AC; //default setting to AC
+        this.powerType = PowerType.AC; //default setting to AC
         this.isAvailable = status == PointStatus.IN_OPERATION_FREE;
     }
 
@@ -18,12 +18,12 @@ public class ChargingPoint {
     public ChargingPoint(RefillingStation refillingStation) {
         this.refillingStation = refillingStation;
         this.status = PointStatus.IN_OPERATION_FREE; //default setting to in operation free
-        this.powerType = StationPowerType.AC; //default setting to AC
+        this.powerType = PowerType.AC; //default setting to AC
         this.isAvailable = status == PointStatus.IN_OPERATION_FREE;
     }
 
     // Constructor with RefillingStation, StationStatus, and StationPowerType
-    public ChargingPoint(RefillingStation refillingStation, PointStatus status, StationPowerType powerType) {
+    public ChargingPoint(RefillingStation refillingStation, PointStatus status, PowerType powerType) {
         this.refillingStation = refillingStation;
         this.status = status;
         this.powerType = powerType;
@@ -31,7 +31,7 @@ public class ChargingPoint {
     }
 
     // Constructor with RefillingStation, StationStatus, StationPowerType, and isAvailable
-    public ChargingPoint(RefillingStation refillingStation, PointStatus status, StationPowerType powerType, boolean isAvailable) {
+    public ChargingPoint(RefillingStation refillingStation, PointStatus status, PowerType powerType, boolean isAvailable) {
         this.refillingStation = refillingStation;
         this.status = status;
         this.powerType = powerType;
@@ -57,10 +57,10 @@ public class ChargingPoint {
     }
 
 
-    public StationPowerType getPowerType() {
+    public PowerType getPowerType() {
         return powerType;
     }
-    public void setPowerType(StationPowerType type) {
+    public void setPowerType(PowerType type) {
         this.powerType = type;
     }
 //.-----------------------------------------

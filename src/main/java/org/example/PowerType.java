@@ -1,5 +1,5 @@
 package org.example;
 
-public enum StationPowerType {
+public enum PowerType {
     AC, DC;
 }

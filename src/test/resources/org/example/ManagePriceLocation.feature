@@ -9,3 +9,10 @@ Feature: Manage prices for locations
     Given I am the owner
     When I update the price of kWh AC to 0.24 EUR at a specific location or all locations
     Then the price for kWh AC at that location or all locations should be updated to 0.24 EUR
+
+    Scenario: Attempt to update price with a negative value
+      Given I am the owner
+      When I update the price of kWh AC to -0.24 EUR at a specific location or all locations
+      Then I should receive an error message "no negative value" for the Price_AC and Price_DC
+      
+
