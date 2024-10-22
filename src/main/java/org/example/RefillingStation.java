@@ -11,6 +11,9 @@ public class RefillingStation {
     private double priceDC = 0.44;
 
     public RefillingStation(String location, List<ChargingPoint> chargingPoints) {
+        if(location.isEmpty()) {
+            throw new IllegalArgumentException("location is empty");
+        }
         this.location = location;
         this.chargingPoints = chargingPoints;
     }

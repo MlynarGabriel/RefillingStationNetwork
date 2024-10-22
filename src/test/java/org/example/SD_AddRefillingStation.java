@@ -26,21 +26,15 @@ public class SD_AddRefillingStation {
 
     @Then("the refilling station should be created at location {string}")
     public void theRefillingStationShouldBeCreatedAtLocation(String expectedLocation) {
-
         Assertions.assertEquals(expectedLocation, station.getLocation());
-
     }
 
     @When("I try to add a new refilling station without adding the name of a location")
     public void iTryToAddANewRefillingStationWithoutAddingALocation() {
         try {
             station = new RefillingStation("", Collections.emptyList());
-            if (station.getLocation().isEmpty()) {
-                throw new IllegalArgumentException("location name required");
-            }
         } catch (IllegalArgumentException e) {
             errorMessage = e.getMessage();
-
         }
     }
 

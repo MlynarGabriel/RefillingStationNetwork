@@ -29,7 +29,6 @@ public class SD_ManagePriceLocation {
             throw new IllegalArgumentException("Price cannot be negative or zero");
         }
 
-
         newStation.setLocation(location);
         newStation.setPrices(priceAC, priceDC);
         network = new FillingNetwork();

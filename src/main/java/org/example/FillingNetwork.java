@@ -74,7 +74,6 @@ public class FillingNetwork {
     }
 
 
-
     public void displayStationStatus(){
         for(RefillingStation s : this.stations){
             System.out.println("Station Location: " + s.getLocation());

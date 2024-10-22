@@ -63,6 +63,8 @@ public class ChargingPoint {
     public void setPowerType(StationPowerType type) {
         this.powerType = type;
     }
+
+
 //.-----------------------------------------
 
     public boolean isAvailable() {
@@ -71,8 +73,6 @@ public class ChargingPoint {
         }  else { //if OUT_OF_ORDER or OCCUPIED
             return false;
         }
-
-
 
     }
 

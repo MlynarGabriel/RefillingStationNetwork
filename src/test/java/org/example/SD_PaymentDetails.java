@@ -29,7 +29,7 @@ public class SD_PaymentDetails {
 
     @Then("my account balance should be updated")
     public void myAccountBalanceShouldBeUpdated() {
-        // No implementation needed, as this is already verified in the next step
+
     }
 
     @And("I should see my new balance as {double} EUR")

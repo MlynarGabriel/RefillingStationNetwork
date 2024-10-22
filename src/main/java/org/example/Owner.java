@@ -19,4 +19,6 @@ public class Owner  {
     public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
     }
+
+
 }
