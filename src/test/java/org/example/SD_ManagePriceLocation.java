@@ -1,6 +1,5 @@
 package org.example;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -72,6 +71,15 @@ public class SD_ManagePriceLocation {
 
         } catch (IllegalArgumentException e) {
             System.out.println("expectedErrorMessage");
+        }
+    }
+    @Then("I should receive an error message {string} for the Price_AC")
+    public void iShouldReceiveAnErrorMessageForThePriceAC(String errorMessage) {
+        try {
+            // Attempt to set an invalid price (zero or negative)
+            newStation.setPriceAC(0); // Example test for zero, can modify for other cases
+        } catch (IllegalArgumentException e) {
+            assertEquals(errorMessage, e.getMessage(), "Expected error message does not match");
         }
     }
 }

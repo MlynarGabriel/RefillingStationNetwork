@@ -9,5 +9,3 @@ Feature: Add new refilling station to a location
     Given I am the owner
     When I try to add a new refilling station without adding the name of a location
     Then i should see an error message "location is empty"
-
-
