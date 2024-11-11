@@ -52,4 +52,19 @@ public class SD_PaymentDetails {
         }
 
     }
+
+    @When("I top up my account with {int}{int}{int} EUR")
+    public void iTopUpMyAccountWithEUR(int arg0, int arg1, int arg2) {
+        // Combine the integers into a decimal value representing the top-up
+        double combinedTopUpAmount = arg0 + (arg1 / 10.0) + (arg2 / 100.0);
+        account.topUp(combinedTopUpAmount);
+    }
+
+
+    @And("I should see my new balance as {int}{int}{int} EUR")
+    public void iShouldSeeMyNewBalanceAsEUR(int arg0, int arg1, int arg2) {
+        // Combine the integers into the expected new balance
+        double expectedBalance = arg0 + (arg1 / 10.0) + (arg2 / 100.0);
+        assertEquals(expectedBalance, account.getBalance(), 0.01);
+    }
 }

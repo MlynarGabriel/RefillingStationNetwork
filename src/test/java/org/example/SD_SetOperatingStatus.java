@@ -1,6 +1,7 @@
 package org.example;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
@@ -75,4 +76,25 @@ public class SD_SetOperatingStatus {
         Assertions.assertEquals(expectedErrorMessage, errorMessage);
     }
 
+    @Given("the status is set to {string}")
+    public void the_status_is_set_to(String status) {
+        chargingPoint = new ChargingPoint();
+        chargingPoint.setStatus(PointStatus.valueOf(status.toUpperCase().replace(" ", "_")));
+    }
+
+    @When("I try to remove the status")
+    public void i_try_to_remove_the_status() {
+        try {
+            // Simulate trying to delete the status by setting it to null
+            chargingPoint.setStatus(null);
+        } catch (IllegalArgumentException e) {
+            errorMessage = e.getMessage();  // Capture the error message when an exception is thrown
+        }
+    }
+
+    @Then("I should the error message {string}")
+    public void i_should_the_error_message(String expectedErrorMessage) {
+        Assertions.assertNotNull(errorMessage, "Expected an error message but got null");
+        Assertions.assertEquals(expectedErrorMessage, errorMessage);  // Compare the actual error message with the expected one
+    }
 }
