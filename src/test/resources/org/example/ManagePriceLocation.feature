@@ -14,3 +14,8 @@ Feature: Manage prices for locations
     Given I am the owner
     When I update the price of kWh AC to -0.24 EUR at a specific location or all locations
     Then I should receive an error message "no negative value" for the Price_AC and Price_DC
+
+  Scenario: Attempt to update price as zero
+    Given I am the owner
+    When I update the price of kWh AC to 0 EUR at a specific location or all locations
+    Then I should receive an error message "price must be a above zero" for the Price_AC

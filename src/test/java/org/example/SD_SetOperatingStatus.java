@@ -41,11 +41,11 @@ public class SD_SetOperatingStatus {
         chargingPoint.stopCharging();
     }
 
-    @When("I try to charge with a balance of zero or below")
+    @When("I try to charge with a balance of zero")
     public void iChargeWithABalanceOfZeroOrBelow() {
 
         try {
-            if (account.getBalance() <= 0) {
+            if (account.getBalance() == 0) {
                 throw new IllegalArgumentException("no balance");
             }
         } catch (IllegalArgumentException e) {

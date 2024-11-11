@@ -6,7 +6,7 @@ public class ChargingPoint {
     private StationPowerType powerType =  StationPowerType.AC; //default setting to AC
     private boolean isAvailable;
 
-    // No-arg constructor
+
     public ChargingPoint() {
         this.refillingStation = new RefillingStation(); // Initialize refillingStation
         this.status = PointStatus.IN_OPERATION_FREE; //default setting to in operation free
@@ -14,7 +14,7 @@ public class ChargingPoint {
         this.isAvailable = status == PointStatus.IN_OPERATION_FREE;
     }
 
-    // Constructor with RefillingStation
+
     public ChargingPoint(RefillingStation refillingStation) {
         this.refillingStation = refillingStation;
         this.status = PointStatus.IN_OPERATION_FREE; //default setting to in operation free
@@ -22,7 +22,7 @@ public class ChargingPoint {
         this.isAvailable = status == PointStatus.IN_OPERATION_FREE;
     }
 
-    // Constructor with RefillingStation, StationStatus, and StationPowerType
+
     public ChargingPoint(RefillingStation refillingStation, PointStatus status, StationPowerType powerType) {
         this.refillingStation = refillingStation;
         this.status = status;
@@ -30,7 +30,7 @@ public class ChargingPoint {
         this.isAvailable = status == PointStatus.IN_OPERATION_FREE;
     }
 
-    // Constructor with RefillingStation, StationStatus, StationPowerType, and isAvailable
+
     public ChargingPoint(RefillingStation refillingStation, PointStatus status, StationPowerType powerType, boolean isAvailable) {
         this.refillingStation = refillingStation;
         this.status = status;

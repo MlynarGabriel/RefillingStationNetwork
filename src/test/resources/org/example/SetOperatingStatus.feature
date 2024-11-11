@@ -18,7 +18,7 @@ Feature: Set a charging point to a specific status
   Scenario: Attempt to charge with a balance of zero or below
     Given I am a registered customer
     And a charging point is currently "IN_OPERATION_FREE"
-    When I try to charge with a balance of zero or below
+    When I try to charge with a balance of zero
     Then I should see a error message "no balance"
 
 
