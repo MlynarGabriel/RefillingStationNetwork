@@ -16,3 +16,11 @@ Feature: Check invoice details
       | 15.08.2024    | 100               |
       | 16.09.2024    | 50                |
       
+  #Edge Case: Top-up history is empty
+  Given I am a registered customer
+    When I check my account top-up history
+    And I have never topped up
+    Then I should an empty history
+    Examples:
+      | date          | amount            |
+      | null          | null              |

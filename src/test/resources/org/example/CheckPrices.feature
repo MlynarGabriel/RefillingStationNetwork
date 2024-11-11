@@ -12,3 +12,10 @@ Feature: Check prices for charging at a location
     When I look up the location "A"
     And the price is not set
     Then I should see an error message "no prices available for this location"
+
+  #Edge Case: price set to 0
+  Scenario: View current price for DC at a location with a price near zero or negative
+    Given I am a registered customer or the owner
+    When I look up the location "C"
+    And the price for DC at location "C" is set to 0.00 EUR
+    Then I should see the price "0.00" for DC at location "C"
