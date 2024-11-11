@@ -23,4 +23,6 @@ Feature: Check invoice details
     Then I should an empty history
     Examples:
       | date          | amount            |
-      | null          | null              |
+      | null          | null              | 
+
+      #test
