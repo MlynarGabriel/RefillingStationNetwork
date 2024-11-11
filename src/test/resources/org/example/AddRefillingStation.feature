@@ -20,4 +20,6 @@ Feature: Add new refilling station to a location
     When the owner tries to delete the name "LocationA"
     Then an error message should be display "location can't be deleted"
 
+    
+
 
