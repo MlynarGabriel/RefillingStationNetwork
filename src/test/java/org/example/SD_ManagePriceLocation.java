@@ -38,7 +38,7 @@ public class SD_ManagePriceLocation {
     @Then("the prices should be set for the new location {string} {double} kWh AC ,{double} kWh DC")
     public void thePricesShouldBeSetForTheNewLocationKWhACKWhDC(String location, double expectedPriceAC, double expectedPriceDC) {
         assertNotNull(addedStation, "Added station is null");
-        assertEquals(location, addedStation.getLocation());
+        assertEquals(location, addedStation.getLocation(), "Location mismatch");
         assertEquals(expectedPriceAC, addedStation.getPriceAC(), "AC price mismatch");
         assertEquals(expectedPriceDC, addedStation.getPriceDC(), "DC price mismatch");
     }
@@ -62,17 +62,17 @@ public class SD_ManagePriceLocation {
 
 
     @Then("I should receive an error message {string} for the Price_AC and Price_DC")
-    public void iShouldReceiveAnErrorMessageForThePrice_ACAndPrice_DC(String errorMessage ) {
+    public void iShouldReceiveAnErrorMessageForThePrice_ACAndPrice_DC(String errorMessage) {
         RefillingStation station = new RefillingStation();
         try {
-            if ( station.getPriceDC()<= 0 || station.getPriceAC() <=0) {
+            if (station.getPriceDC() <= 0 || station.getPriceAC() <= 0) {
                 throw new IllegalArgumentException("Price cannot be negative or zero");
             }
-
         } catch (IllegalArgumentException e) {
             System.out.println("expectedErrorMessage");
         }
     }
+
     @Then("I should receive an error message {string} for the Price_AC")
     public void iShouldReceiveAnErrorMessageForThePriceAC(String errorMessage) {
         try {
@@ -82,4 +82,17 @@ public class SD_ManagePriceLocation {
             assertEquals(errorMessage, e.getMessage(), "Expected error message does not match");
         }
     }
+
+    @When("I delete the price for location {string}")
+    public void iDeleteThePriceForLocation(String location) {
+        RefillingStation station = network.findStationByLocation(location);
+        if (station != null) {
+            station.setPriceAC(Double.NaN);  // Or use a sentinel value like -1
+            station.setPriceDC(Double.NaN);  // Or use a sentinel value like -1
+            System.out.println("Prices deleted for location: " + location);
+        }
+    }
+
+
+
 }
