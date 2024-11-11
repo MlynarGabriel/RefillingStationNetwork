@@ -16,8 +16,4 @@ Feature: Set a charging point to a specific status
     When I try to set the status of the station to "UNKNOWN"
     Then the charging point should return an error message saying "Invalid status"
 
-  #Edge Case: 
-
-
-
 
