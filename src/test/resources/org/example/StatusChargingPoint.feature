@@ -1,5 +1,9 @@
 Feature: Charging Point Availability
 
-  Scenario: Check charging point availability
-    Given I view the status of charging points at location "A"
-    Then I should see the availability of each charging point
+  Scenario: View the status of a specific charging point
+    Given I am a registered customer
+    When I check the status of the charging point at location "A"
+    Then I should see the status of the charging point (e.g., "IN_OPERATION_FREE", "OCCUPIED", "OUT_OF_ORDER")
+
+    
+
