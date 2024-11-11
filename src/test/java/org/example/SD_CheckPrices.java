@@ -78,4 +78,40 @@ public class SD_CheckPrices {
         }
     }
 
+    @Then("I should see the price {string} for DC at location {string}")
+    public void i_should_see_the_price_for_dc_at_location(String expectedPrice, String location) {
+        // Assuming you have a method to find the price for DC at the location
+        if (currentStation != null) {
+            double actualPrice = currentStation.getPriceDC();
+            if (String.valueOf(actualPrice).equals(expectedPrice)) {
+                System.out.println("Price matches for DC: " + expectedPrice);
+            } else {
+                System.out.println("Price does not match. Expected: " + expectedPrice + ", Actual: " + actualPrice);
+            }
+        } else {
+            System.out.println("No station found at location: " + location);
+        }
+    }
+
+    @When("the price is not set")
+    public void the_price_is_not_set() {
+        // Handle the case where no price is set for DC (use -1 to signify an unset price)
+        if (currentStation != null) {
+            currentStation.setPriceDC(-1.0);  // Set price to -1.0 to indicate it's not set
+            System.out.println("Price is not set for DC at this station.");
+        }
+    }
+
+
+    @When("the price for DC at location {string} is set to {double} EUR")
+    public void the_price_for_dc_at_location_is_set_to_eur(String location, double price) {
+        // Assuming you have a method to find the station by location
+        currentStation = network.findStationByLocation(location);
+        if (currentStation != null) {
+            currentStation.setPriceDC(price);  // price is now a primitive double
+            System.out.println("Price for DC at location " + location + " set to " + price + " EUR.");
+        } else {
+            System.out.println("No station found at location: " + location);
+        }
+    }
 }

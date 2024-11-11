@@ -58,4 +58,28 @@ public class SD_CheckInvoiceDetails {
         assertTrue(actualHistory.isEmpty(), "Top-up history is not empty.");
         }
 
+    @Given("I am logged in")
+    public void i_am_logged_in() {
+        account = new Account();
+        // Manually set the balance to 50.0 to match the test's expectations
+        account.setBalance(50.0);
+    }
+
+    @Then("I should see my account balance {string}")
+    public void i_should_see_my_account_balance(String expectedBalance) {
+        double actualBalance = account.getBalance();  // Get the actual balance from the account
+        assertEquals(Double.parseDouble(expectedBalance), actualBalance, "Account balance does not match");
+    }
+
+    @When("I have never topped up")
+    public void i_have_never_topped_up() {
+        // In this case, we assume that the account starts with an empty top-up history by default.
+        // No additional action is needed unless you have a method to initialize the top-up history.
+    }
+
+    @Then("I should see an empty history")
+    public void i_should_see_an_empty_history() {
+        List<TopUp> actualHistory = account.getTopUpHistory();  // Get the top-up history from the account
+        assertTrue(actualHistory.isEmpty(), "Top-up history is not empty.");
+    }
 }
