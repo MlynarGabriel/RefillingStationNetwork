@@ -15,12 +15,11 @@ Feature: Set a charging point to a specific status
     When a customer stops charging
     Then the charging point should automatically be marked as "IN_OPERATION_FREE"
 
-  Scenario: Attempt to charge with a balance of zero or below
-    Given I am a registered customer
-    And a charging point is currently "IN_OPERATION_FREE"
-    When I try to charge with a balance of zero
-    Then I should see a error message "no balance"
-
+  #Error Case: Set invalid status
+  Scenario: Try to set a charging point to "UNKNOWN"
+  Given a charging point is currently "IN_OPERATION_FREE"
+  When I try to set the status of the station to "UNKNOWN"
+  Then the charging point should return an error message saying "Invalid status"
 
 
 
