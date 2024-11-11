@@ -20,7 +20,3 @@ Feature: Set a charging point to a specific status
   Given a charging point is currently "IN_OPERATION_FREE"
   When I try to set the status of the station to "UNKNOWN"
   Then the charging point should return an error message saying "Invalid status"
-
-
-
-

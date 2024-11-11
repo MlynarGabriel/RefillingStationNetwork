@@ -166,6 +166,19 @@ public class SD_RegisterationDetails {
         validateRegistration();
     }
 
+    @Then("the system should display an error message {string}")
+    public void the_system_should_display_an_error_message(String errorMessage) {
+        System.out.println("Error: " + errorMessage);
+        registrationSuccessful = false;
+    }
+
+    @When("I enter {string} as a name, {string} as the email address, and {string} as a password")
+    public void i_enter_as_a_name_as_the_email_address_and_as_a_password(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        validateRegistration();
+    }
 
     @And("the system should display an error message your mail is missing the @.")
     public void theSystemShouldDisplayAnErrorMessageYourMailIsMissingThe() throws Throwable {
@@ -182,4 +195,5 @@ public class SD_RegisterationDetails {
         validateRegistration();
 
     }
+
 }
