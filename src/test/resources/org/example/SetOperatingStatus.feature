@@ -16,4 +16,8 @@ Feature: Set a charging point to a specific status
     When I try to set the status of the station to "UNKNOWN"
     Then the charging point should return an error message saying "Invalid status"
 
-
+  #Edge Case: delete "IN_OPERATION_FREE" status
+  Scenario: Attempt to delete "IN_OPERATION_FREE" status
+    Given the status is set to "IN_OPERATION_FREE"
+    When I try to remove the status
+    Then I should the error message "status cant be deleted"
