@@ -27,13 +27,14 @@ public class SD_StartChargingSession {
     @When("I select {string} as my charging mode and start a charging session")
     public void iSelectAsMyChargingModeAndStartAChargingSession(String mode) {
         chargingMode = mode;
-        if (chargingPoint.getStatus()!=PointStatus.IN_OPERATION_FREE) {
+        dcPricePerKWh = 0.5; // Set the price for DC charging mode
+        if (chargingPoint.getStatus() != PointStatus.IN_OPERATION_FREE) {
             errorMessage = "Charging station is currently out of order. Please try another station.";
             return;
         }
 
-        if (account.getBalance()== 0){
-            errorMessage="Insufficient balance. Please top up your account.";
+        if (account.getBalance() == 0) {
+            errorMessage = "Insufficient balance. Please top up your account.";
             return;
         }
 
@@ -54,9 +55,9 @@ public class SD_StartChargingSession {
 
     @And("my balance should be reduced based on the usage at the locked-in rate")
     public void myBalanceShouldBeReducedBasedOnTheUsageAtTheLockedInRate() {
-        // Assuming a usage of 1 kWh for simplicity
-        double expectedBalance = account.getBalance();
-        Assertions.assertTrue(expectedBalance < 69.00, "Balance should be reduced after charging.");
+        // Assuming 1 kWh charge, check that balance is reduced by dcPricePerKWh
+        double expectedBalance = 69.00 - dcPricePerKWh; // Assuming initial balance was 69.00 EUR
+        Assertions.assertEquals(expectedBalance, account.getBalance(), "Balance after charging doesn't match.");
     }
 
     @Given("I am a registered customer at a charging point that is {string}")
