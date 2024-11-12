@@ -61,7 +61,7 @@ public class ChargeSession {
 
     // Methode, um den Energie-Typ zu bekommen
     public StationPowerType getPowerType() {
-        return chargingPoint.getPowerType(); //wir nehmen den Powertyp von der ChargingPoint Klasse
+        return chargingPoint.getPowerType();
     }
 
     public double getEnergyCharged() {
@@ -71,19 +71,19 @@ public class ChargeSession {
     public double calcTotalPrice() {
         RefillingStation station = chargingPoint.getRefillingStation();
 
-        // Preis pro kWh abhängig vom Power-Typ (AC oder DC)
+
         double pricePerKWh;
 
-        // Überprüfen, welcher Power-Typ verwendet wird (AC oder DC)
+
         if (getPowerType() == StationPowerType.AC) {
-            pricePerKWh = station.getPriceAC(); // Preis pro kWh für AC von der RefillingStation
+            pricePerKWh = station.getPriceAC();
         } else if (getPowerType() == StationPowerType.DC) {
-            pricePerKWh = station.getPriceDC(); // Preis pro kWh für DC von der RefillingStation
+            pricePerKWh = station.getPriceDC();
         } else {
             throw new IllegalArgumentException("Unknown power type.");
         }
 
-        // Berechnung des Gesamtpreises: Energieverbrauch (kWh) * Preis pro kWh
+
         totalPrice = getEnergyCharged() * pricePerKWh;
 
         return totalPrice;

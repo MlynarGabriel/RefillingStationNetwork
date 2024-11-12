@@ -14,7 +14,6 @@ public class SD_RegisterationDetails {
 
     @Given("I am a new user")
     public void iAmANewUser() {
-        // Initialize the user's details
         name = "";
         email = "";
         password = "";
@@ -28,14 +27,12 @@ public class SD_RegisterationDetails {
 
     @And("I should receive a unique customer ID")
     public void iShouldReceiveAUniqueCustomerID() {
-        // Simulate generating a unique customer ID
         String customerId = "CUST-12345";
         System.out.println("Customer ID: " + customerId);
     }
 
     @Given("I have not entered all required fields")
     public void iHaveNotEnteredAllRequiredFields() {
-        // Simulate not entering all required fields
         name = "";
         email = "johndoe@example.com";
         password = "";
@@ -44,7 +41,6 @@ public class SD_RegisterationDetails {
 
     @Then("the system should display an error message asking for the missing details")
     public void theSystemShouldDisplayAnErrorMessageAskingForTheMissingDetails() {
-        // Simulate displaying the error message
         if (errorMessage != null) {
             System.out.println("Error: " + errorMessage);
         }
@@ -52,7 +48,7 @@ public class SD_RegisterationDetails {
 
     @When("I attempt to register with missing fields")
     public void iAttemptToRegisterWithMissingFields() {
-        registrationSuccessful = false; // Setze auf false, da wir die Registrierung testen
+        registrationSuccessful = false;
         System.out.println("Attempting to register with missing fields...");
         validateRegistration();
     }
@@ -87,7 +83,7 @@ public class SD_RegisterationDetails {
             registrationSuccessful = false;
         }
 
-        // Überprüfe, ob die Registrierung nicht verarbeitet wurde
+
         assert !registrationSuccessful : "There should be an error message!";
     }
 
@@ -96,7 +92,7 @@ public class SD_RegisterationDetails {
     }
 
     private boolean isValidName(String name) {
-        return name != null && name.matches("^[a-zA-Z0-9 ]+$"); // Erlaubt nur Buchstaben, Zahlen und Leerzeichen
+        return name != null && name.matches("^[a-zA-Z0-9 ]+$");
     }
 
     @Then("the system should display an error message indicating that the name is missing")
@@ -184,7 +180,7 @@ public class SD_RegisterationDetails {
     public void theSystemShouldDisplayAnErrorMessageYourMailIsMissingThe() throws Throwable {
         if (!email.contains("@")) {
             System.out.println("Fehler: Ihre E-Mail fehlt das @.");
-            registrationSuccessful = false; // Registrierung als nicht erfolgreich setzen
+            registrationSuccessful = false;
         }}
 
     @When("I  enter {string} as a name, {string} as the email address, and {string} as a password")

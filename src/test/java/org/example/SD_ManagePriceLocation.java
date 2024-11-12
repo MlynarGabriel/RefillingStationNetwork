@@ -14,7 +14,7 @@ public class SD_ManagePriceLocation {
 
 
     public SD_ManagePriceLocation() {
-        network = new FillingNetwork(); // Create the network object only once
+        network = new FillingNetwork();
     }
 
     @Given("I am the owner")
@@ -31,7 +31,7 @@ public class SD_ManagePriceLocation {
         newStation.setLocation(location);
         newStation.setPrices(priceAC, priceDC);
         network = new FillingNetwork();
-        network.addStation(newStation);  // Station wird zum Netzwerk hinzugefügt
+        network.addStation(newStation);
         addedStation = newStation;
     }
 
@@ -76,8 +76,7 @@ public class SD_ManagePriceLocation {
     @Then("I should receive an error message {string} for the Price_AC")
     public void iShouldReceiveAnErrorMessageForThePriceAC(String errorMessage) {
         try {
-            // Attempt to set an invalid price (zero or negative)
-            newStation.setPriceAC(0); // Example test for zero, can modify for other cases
+            newStation.setPriceAC(0);
         } catch (IllegalArgumentException e) {
             assertEquals(errorMessage, e.getMessage(), "Expected error message does not match");
         }
@@ -87,8 +86,8 @@ public class SD_ManagePriceLocation {
     public void iDeleteThePriceForLocation(String location) {
         RefillingStation station = network.findStationByLocation(location);
         if (station != null) {
-            station.setPriceAC(Double.NaN);  // Or use a sentinel value like -1
-            station.setPriceDC(Double.NaN);  // Or use a sentinel value like -1
+            station.setPriceAC(Double.NaN);
+            station.setPriceDC(Double.NaN);
             System.out.println("Prices deleted for location: " + location);
         }
     }

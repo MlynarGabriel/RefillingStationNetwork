@@ -62,17 +62,17 @@ public class SD_SetOperatingStatus {
     @When("I try to set the status of the station to {string}")
     public void iTryToSetTheStatusOfTheStationTo(String status) {
         try {
-            // Attempt to set the status, expecting it might throw an exception if invalid
+
             chargingPoint.setStatus(PointStatus.valueOf(status.toUpperCase().replace(" ", "_")));
         } catch (IllegalArgumentException e) {
-            // Capture the exception message if the status is invalid
+
             errorMessage = "Invalid status";
         }
     }
 
     @Then("the charging point should return an error message saying {string}")
     public void theChargingPointShouldReturnAnErrorMessageSaying(String expectedErrorMessage) {
-        // Assert that the actual error message matches the expected message
+
         Assertions.assertEquals(expectedErrorMessage, errorMessage);
     }
 
@@ -87,7 +87,7 @@ public class SD_SetOperatingStatus {
         try {
             chargingPoint.setStatus(null);
         } catch (IllegalArgumentException e) {
-            errorMessage = e.getMessage();  // Capture the exact error message
+            errorMessage = e.getMessage();
         }
     }
 

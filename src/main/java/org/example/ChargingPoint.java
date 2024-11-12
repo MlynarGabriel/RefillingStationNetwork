@@ -78,17 +78,17 @@ public class ChargingPoint {
 
     public boolean startCharging() {
         if (status == PointStatus.IN_OPERATION_FREE) {
-            // Ladepunkt als occupied updaten und isAvailable auf false setzen
+
             status = PointStatus.OCCUPIED;
             isAvailable = false;
             System.out.println("Charging has started.");
             return true;
         } else if (status == PointStatus.OUT_OF_ORDER) {
-            // Falls der Ladepunkt out of order ist, Fehler melden; vllt ab hier später eine ExceptionIO schreiben
+
             System.out.println("Charging point is out of order.");
             return false;
         } else {
-            // Falls die Station bereits occupied ist, ist aber etwas unnötig weil die Person es ja physisch sehen kann wenn der dort ist. aber ja machen wir es so wieso nicht
+
             System.out.println("Charging point is already occupied.");
             return false;
         }
@@ -96,17 +96,17 @@ public class ChargingPoint {
 
     public boolean stopCharging() {
         if (status == PointStatus.OCCUPIED) {
-            // Ladepunkt als in operation free updaten und isAvailable auf true setzen
+
             status = PointStatus.IN_OPERATION_FREE;
             isAvailable = true;
             System.out.println("Charging has stopped.");
             return true;
         } else if (status == PointStatus.OUT_OF_ORDER) {
-            // Falls der Ladepunkt out of order ist, Fehler melden
+
             System.out.println("Charging point is out of order.");
             return false;
         } else {
-            // Falls die Station bereits in operation free ist, ist aber etwas unnötig weil die Person es ja physisch sehen kann wenn der dort ist. aber ja machen wir es so wieso nicht
+
             System.out.println("Charging point is already available.");
             return false;
         }

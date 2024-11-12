@@ -14,7 +14,7 @@ public class SD_StatusChargingPoint {
 
     @Given("I view the status of charging points at location {string}")
     public void iViewTheStatusOfChargingPoints(String location) {
-        // Initialize the network and station
+
         network = new FillingNetwork();
         station = network.findStationByLocation(location);
         if (station == null) {
@@ -28,7 +28,7 @@ public class SD_StatusChargingPoint {
     @When("I check the status of the charging point at location {string}")
     public void iCheckTheStatusOfTheChargingPointAtLocation(String location) {
         if (chargingPoint == null) {
-            // Provide a more descriptive message in case the charging point is not initialized
+
             Assertions.fail("Charging point is not initialized at location: " + location);
         } else {
             PointStatus status = chargingPoint.getStatus();
@@ -61,14 +61,14 @@ public class SD_StatusChargingPoint {
     @Then("I should see {string} or {string}")
     public void iShouldSeeOr(String powerType1, String powerType2) {
         if (chargingPoint != null) {
-            // Convert the input strings to StationPowerType enum values
+
             StationPowerType expectedPowerType1 = StationPowerType.valueOf(powerType1);
             StationPowerType expectedPowerType2 = StationPowerType.valueOf(powerType2);
 
-            // Get the actual power type of the charging point
+
             StationPowerType actualPowerType = chargingPoint.getPowerType();
 
-            // Assert that the actual power type is either of the expected ones (AC or DC)
+
             Assertions.assertTrue(actualPowerType == expectedPowerType1 || actualPowerType == expectedPowerType2,
                     "Power type should be either " + expectedPowerType1 + " or " + expectedPowerType2);
         } else {
@@ -84,7 +84,7 @@ public class SD_StatusChargingPoint {
         if (chargingPoint == null) {
             Assertions.fail("Charging point is not initialized at location: " + location);
         } else {
-            // If status is empty or charging point is in a problematic state
+
             PointStatus status = chargingPoint.getStatus();
             if (status == null) {
                 System.out.println("Status is empty.");
@@ -98,8 +98,8 @@ public class SD_StatusChargingPoint {
     @When("status is empty")
     public void statusIsEmpty() {
         if (chargingPoint != null) {
-            // Simulating empty status
-            chargingPoint.setStatus(null); // Assuming setStatus is a method of ChargingPoint
+
+            chargingPoint.setStatus(null);
             System.out.println("The status is now set to empty.");
         } else {
             Assertions.fail("Charging point is not initialized");

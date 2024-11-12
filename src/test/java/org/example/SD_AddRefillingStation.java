@@ -21,7 +21,7 @@ public class SD_AddRefillingStation {
 
     @When("I add a new refilling station at location {string}")
     public void iAddANewRefillingStationAtLocation(String location) {
-        station = new RefillingStation(); // create a new RefillingStation object
+        station = new RefillingStation();
         station.setLocation(location);
 
 
@@ -43,7 +43,7 @@ public class SD_AddRefillingStation {
 
     @Then("I should see an error message {string}")
     public void i_should_see_an_error_message(String expectedErrorMessage) {
-        // This is where you'd typically check an error variable or log
+
         System.out.println("Expected error message: " + expectedErrorMessage);
     }
 
@@ -52,14 +52,14 @@ public class SD_AddRefillingStation {
         if (stationName.length() < 3) {
             System.out.println("Error: Station name is too short.");
         } else {
-            // Simulate saving the station name or processing further
+
             System.out.println("Station name entered successfully: " + stationName);
         }
     }
 
     @Given("this is the refilling station:")
     public void this_is_the_refilling_station(io.cucumber.datatable.DataTable dataTable) {
-        // Convert DataTable to a list of maps and process attributes
+
         List<Map<String, String>> stationData = dataTable.asMaps(String.class, String.class);
         for (Map<String, String> data : stationData) {
             String name = data.get("name");
@@ -70,7 +70,7 @@ public class SD_AddRefillingStation {
 
     @When("the owner tries to delete the name {string}")
     public void the_owner_tries_to_delete_the_name(String stationName) {
-        // Simulate deletion logic; in a real system, you might check if it exists and can be deleted
+
         System.out.println("Attempting to delete station with name: " + stationName);
     }
 

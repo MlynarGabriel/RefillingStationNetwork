@@ -15,7 +15,7 @@ public class SD_StartChargingSession {
     @Given("I am a register customer with a balance of {double} EUR")
     public void iAmARegisterCustomerWithABalanceOfEUR(double initialBalance) {
         account = new Account();
-        account.setBalance(initialBalance); // Set balance for the customer
+        account.setBalance(initialBalance);
     }
 
     @And("I am at a charging point that is {string}")
@@ -27,7 +27,7 @@ public class SD_StartChargingSession {
     @When("I select {string} as my charging mode and start a charging session")
     public void iSelectAsMyChargingModeAndStartAChargingSession(String mode) {
         chargingMode = mode;
-        dcPricePerKWh = 0.5; // Set the price for DC charging mode
+        dcPricePerKWh = 0.5;
         if (chargingPoint.getStatus() != PointStatus.IN_OPERATION_FREE) {
             errorMessage = "Charging station is currently out of order. Please try another station.";
             return;
@@ -39,7 +39,7 @@ public class SD_StartChargingSession {
         }
 
         if (account.getBalance() >= dcPricePerKWh) {
-            // Deduct balance (assuming 1 kWh charge for simplicity)
+
             account.setBalance(account.getBalance() - dcPricePerKWh);
         } else {
             errorMessage = "Insufficient balance for the selected charging mode.";
@@ -55,7 +55,7 @@ public class SD_StartChargingSession {
 
     @And("my balance should be reduced based on the usage at the locked-in rate")
     public void myBalanceShouldBeReducedBasedOnTheUsageAtTheLockedInRate() {
-        // Assuming 1 kWh charge, check that balance is reduced by dcPricePerKWh
+
         double expectedBalance = 69.00 - dcPricePerKWh; // Assuming initial balance was 69.00 EUR
         Assertions.assertEquals(expectedBalance, account.getBalance(), "Balance after charging doesn't match.");
     }
@@ -63,7 +63,7 @@ public class SD_StartChargingSession {
     @Given("I am a registered customer at a charging point that is {string}")
     public void iAmARegisteredCustomerAtAChargingPointThatIs(String status) {
         account = new Account();
-        account.setBalance(69.00); // Assuming customer balance
+        account.setBalance(69.00);
         chargingPoint = new ChargingPoint();
         chargingPoint.setStatus(PointStatus.valueOf(status.toUpperCase().replace(" ", "_")));
     }
