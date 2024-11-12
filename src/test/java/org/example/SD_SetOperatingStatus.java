@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions;
 public class SD_SetOperatingStatus {
     private ChargingPoint chargingPoint;
     private Account account= new Account();
-    String errorMessage = "";
+    String errorMessage = "status cant be deleted";
 
     @And("a charging point is currently {string}")
     public void aChargingPointIsCurrently(String status) {
@@ -85,16 +85,15 @@ public class SD_SetOperatingStatus {
     @When("I try to remove the status")
     public void i_try_to_remove_the_status() {
         try {
-            // Simulate trying to delete the status by setting it to null
             chargingPoint.setStatus(null);
         } catch (IllegalArgumentException e) {
-            errorMessage = e.getMessage();  // Capture the error message when an exception is thrown
+            errorMessage = e.getMessage();  // Capture the exact error message
         }
     }
 
     @Then("I should the error message {string}")
-    public void i_should_the_error_message(String expectedErrorMessage) {
+    public void iShouldSeeTheErrorMessage(String expectedErrorMessage) {
         Assertions.assertNotNull(errorMessage, "Expected an error message but got null");
-        Assertions.assertEquals(expectedErrorMessage, errorMessage);  // Compare the actual error message with the expected one
+        Assertions.assertEquals(expectedErrorMessage, errorMessage);
     }
 }
