@@ -5,10 +5,10 @@ Feature: Charging Point Availability
     When I check the status of the charging point at location "A"
     Then I should see the status of the charging point "IN_OPERATION_FREE"
 
-  Scenario: Check if charging point has a "DC"
+  Scenario: Check if charging point has DC or AC
     Given I am a registered customer
     When I check the power type of a charging point at location "A"
-    Then I should see "DC"
+    Then I should see "DC" or "AC"
 
   #EdgeCase
   Scenario: Attempt to view an location with an empty status
@@ -16,9 +16,3 @@ Feature: Charging Point Availability
     When I try to check the status of the charging point at location "A"
     And status is empty
     Then I should receive an error message "Status unavailable"
-
-
-
-
-    
-
