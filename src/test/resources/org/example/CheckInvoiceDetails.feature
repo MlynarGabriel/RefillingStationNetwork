@@ -16,13 +16,13 @@ Feature: Check invoice details
       | 16.09.2024 | 50     |
       
   #Edge Case: Top-up history is empty
-  Scenario: Edge Case - Top-up history is empty
+  Scenario Outline: Edge Case - Top-up history is empty
     Given I am a registered customer
     When I check my account top-up history
     And I have never topped up
     Then I should see an empty history
     Examples:
-      | date          | amount            |
-      | null          | null              | 
+      | date | amount |
+      | null | null   |
 
       #test

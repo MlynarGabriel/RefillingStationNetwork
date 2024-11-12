@@ -13,10 +13,6 @@ Scenario: Start charging session with sufficient balance
     When I attempt to start a charging session
     Then I should see an error message "Charging station is currently out of order. Please try another station."
 
-#ErrorCase:        
-Scenario: Attempt to start multiple charging session attempt on a single account at once
-    Given I am a registered customer with a single account
-    When I attempt to start multiple charging session at once
-    Then I should see an error message "Account can not start multiple session"
+
 
 

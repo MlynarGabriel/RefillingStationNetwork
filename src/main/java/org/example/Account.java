@@ -60,11 +60,6 @@ public class Account {
 
 
 
-    public void displayInvoice(){
-        //in Bearbeitugn
-    }
-
-
 
 
 }
