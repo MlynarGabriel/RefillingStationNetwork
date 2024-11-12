@@ -27,6 +27,6 @@ Feature: Enter payment details and confirm order
   Scenario: Attempt to top up with a ver large amount
     Given I am a registered customer
     And I have an account with balance of 10.00 EUR
-    When I top up my account with 1,000,000.00 EUR
+    When I top up my account with 1000000.00 EUR
     Then my account balance should be updated
-    And I should see my new balance as 1,000,010.00 EUR
+    And I should see my new balance as 1000010.00 EUR
